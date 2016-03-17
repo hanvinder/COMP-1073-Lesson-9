@@ -43,6 +43,7 @@ var person ={}; /*var Person = new Objedct();
 person.age = 40;
 
 console.log(person.age);*/
+
  var output = "";
     var firstParagraph = document.getElementById("firstParagraph");
 
@@ -51,8 +52,26 @@ console.log(person.age);*/
     request.open('GET', '../person.txt', true);
     request.addEventListener('readystatechange', function() {
         if (request.readyState === 4) {
+			//declare our address array
+			var addressBook =[]; /* var addressBook =new array();*/
+			
+			//read in the data from person.txt file
+			addressBook = JSON.parse(request.responseText);
+			
+			var addressBookLength = addressBook.length;
+			
+			//for each person in addressBook.....loop
+			for(var person in addressBook){
+				console.log(person);
+				//assign the sayHello method to each person object
+				person.sayHello = function() {
+                output += "<br><hr><br>" + Person.name + " says hello";
+            		}
+			}
+			
+			Console.log (addressBook);
             var Person = {}; /* var Person = new Object();   */
-
+/*
             Person = JSON.parse(request.responseText);
             
             Person.sayHello = function() {
